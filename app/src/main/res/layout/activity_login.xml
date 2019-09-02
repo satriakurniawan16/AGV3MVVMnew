@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.satria.authenticguards.agv3mvvm.viewmodels.LoginViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        tools:context="com.satria.authenticguards.agv3mvvm.View.LoginActivity">
+
+        <ImageView
+            android:id="@+id/bg_top"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/layer_4"
+            tools:ignore="MissingConstraints" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingTop="40dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/txt_title_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOGIN,"
+                android:textColor="@color/colorWhite"
+                android:textSize="24dp"
+                android:layout_marginTop="70dp"/>
+            <TextView
+                android:id="@+id/txt_subtitle_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_title_login"
+                android:layout_marginTop="10dp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="Please enter your Email and Password !"
+                android:textColor="@color/colorWhite"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/txt_emailaddress_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_subtitle_login"
+                android:layout_marginTop="20dp"
+                android:text="EMAIL ADDRESS"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/edttxt_emailaddress_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_emailaddress_login"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/colorDefault"
+                android:inputType="textEmailAddress"
+                android:text="@={loginViewModel.emailaddress}"
+                android:textColor="@color/colorWhite" />
+            <TextView
+                android:id="@+id/txt_password_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edttxt_emailaddress_login"
+                android:layout_marginTop="10dp"
+                android:text="PASSWORD"
+                android:textColor="@color/colorWhite"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/edttxt_password_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_password_login"
+                android:layout_marginTop="10dp"
+                android:text="@={loginViewModel.Password}"
+                android:backgroundTint="@color/colorDefault"
+                android:inputType="textPassword"
+                android:textColor="@color/colorWhite" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/edttxt_password_login"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_gold_button"
+                android:text="Login"
+                android:onClick="@{(v) -> loginViewModel.onClick(v)}"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
