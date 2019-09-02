@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="registerViewModel"
+            type="com.satria.authenticguards.agv3mvvm.viewmodels.RegisterViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlack"
+        tools:context="com.satria.authenticguards.agv3mvvm.View.RegisterActivity">
+
+        <ImageView
+            android:id="@+id/bg_top"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            android:scaleType="centerCrop"
+            android:src="@drawable/layer_4" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="40dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="30dp">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CREATE ACCOUNT,"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24dp" />
+
+                <TextView
+                    android:id="@+id/txt_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_title"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:text="@string/string_subtitle_login"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/txt_fullname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_subtitle"
+                    android:layout_marginTop="50dp"
+                    android:text="FULLNAME"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edttxt_fullname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_fullname"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorDefault"
+                    android:inputType="text"
+                    android:text="@={registerViewModel.Fullname}"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/txt_emailaddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edttxt_fullname"
+                    android:layout_marginTop="10dp"
+                    android:text="EMAIL ADDRESS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edttxt_emailaddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_emailaddress"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorDefault"
+                    android:inputType="textEmailAddress"
+                    android:text="@={registerViewModel.EmailAddress}"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/txt_phonenumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edttxt_emailaddress"
+                    android:layout_marginTop="10dp"
+                    android:text="PHONE NUMBER"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/txt_codephone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_phonenumber"
+                    android:layout_marginTop="22dp"
+                    android:text="+62"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/edttxt_phonenumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_phonenumber"
+                    android:layout_marginTop="10dp"
+                    android:layout_toRightOf="@id/txt_codephone"
+                    android:backgroundTint="@color/colorDefault"
+                    android:text="@={registerViewModel.PhoneNumber}"
+                    android:inputType="phone"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/txt_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edttxt_phonenumber"
+                    android:layout_marginTop="10dp"
+                    android:text="PASSWORD"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edttxt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_password"
+                    android:layout_marginTop="10dp"
+                    android:text="@={registerViewModel.Password}"
+                    android:backgroundTint="@color/colorDefault"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/txt_retype_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edttxt_password"
+                    android:layout_marginTop="10dp"
+                    android:text="CONFIRMATION PASSWORD"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edttxt_retype_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_retype_password"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorDefault"
+                    android:text="@={registerViewModel.ConfirmationPassword}"
+                    android:inputType="textPassword"
+                    android:textColor="@color/colorWhite" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/edttxt_retype_password"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/rounded_gold_button"
+                    android:text="REGISTER"
+                    android:onClick="@{(v) -> registerViewModel.onClick(v)}"
+                    android:textColor="@color/colorWhite" />
+            </RelativeLayout>
+        </ScrollView>
+    </android.support.constraint.ConstraintLayout>
+</layout>

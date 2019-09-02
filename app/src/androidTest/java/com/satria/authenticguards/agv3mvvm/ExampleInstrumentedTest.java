@@ -1,4 +1,4 @@
-package com.mvvm.agv3.agv3mvvm;
+package com.satria.authenticguards.agv3mvvm;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

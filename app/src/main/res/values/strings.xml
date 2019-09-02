@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AGV3MVVM</string>
+    <string name="string_subtitle_login">please fill all blank form to create account !</string>
 </resources>

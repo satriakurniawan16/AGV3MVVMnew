@@ -1,16 +1,16 @@
-package com.mvvm.agv3.agv3mvvm.View;
+package com.satria.authenticguards.agv3mvvm.View;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.mvvm.agv3.agv3mvvm.MainActivity;
-import com.mvvm.agv3.agv3mvvm.R;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.satria.authenticguards.R;
+import com.satria.authenticguards.agv3mvvm.MainActivity;
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -32,7 +32,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         };
-        handler.postDelayed(r,7000);
+        handler.postDelayed(r,1000);
 
     }
 }
