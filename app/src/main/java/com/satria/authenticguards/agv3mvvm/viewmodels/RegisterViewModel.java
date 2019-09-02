@@ -5,7 +5,7 @@ import android.view.View;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.satria.authenticguards.agv3mvvm.Model.User;
+import com.satria.authenticguards.agv3mvvm.model.User;
 
 public class RegisterViewModel extends ViewModel {
 

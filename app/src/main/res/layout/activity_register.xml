@@ -10,7 +10,7 @@
             type="com.satria.authenticguards.agv3mvvm.viewmodels.RegisterViewModel" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBlack"
@@ -22,7 +22,8 @@
             android:layout_height="500dp"
             android:orientation="vertical"
             android:scaleType="centerCrop"
-            android:src="@drawable/layer_4" />
+            android:src="@drawable/layer_4"
+            tools:ignore="MissingConstraints" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -182,5 +183,5 @@
                     android:textColor="@color/colorWhite" />
             </RelativeLayout>
         </ScrollView>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

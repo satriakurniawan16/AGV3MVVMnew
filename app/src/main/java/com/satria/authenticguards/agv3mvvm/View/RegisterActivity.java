@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.MainActivity;
-import com.satria.authenticguards.agv3mvvm.Model.User;
+import com.satria.authenticguards.agv3mvvm.model.User;
 import com.satria.authenticguards.agv3mvvm.viewmodels.RegisterViewModel;
 import com.satria.authenticguards.databinding.ActivityRegisterBinding;
 
@@ -93,7 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-        //
     }
 
     private void saveUser(User user){

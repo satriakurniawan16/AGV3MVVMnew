@@ -1,4 +1,4 @@
-package com.satria.authenticguards.agv3mvvm.Model;
+package com.satria.authenticguards.agv3mvvm.model;
 
 import android.util.Patterns;
 
