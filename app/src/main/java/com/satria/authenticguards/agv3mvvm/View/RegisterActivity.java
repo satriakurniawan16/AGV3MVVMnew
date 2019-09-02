@@ -93,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+        //
     }
 
     private void saveUser(User user){
