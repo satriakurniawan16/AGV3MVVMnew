@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1068271326502-222v9ag30adu38rbjknksavabg8fmvp5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.agreader",
+            "certificate_hash": "695dc78b133f8413d25d02ff5be4ebe1a6be5fc8"
+          }
+        },
+        {
           "client_id": "1068271326502-dp046o1ototdgudni88lc3llrhmu5ecr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -218,6 +226,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1068271326502-q2cvaqlq7umbqbf93hrh15mh5q2a36vr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.satria.authenticguards",
+            "certificate_hash": "44bde514a4b3db5fd54df5ac71a0f811585f6b12"
+          }
+        },
         {
           "client_id": "1068271326502-82poeo9u1ea5q850ck57s95nk3gqt9mk.apps.googleusercontent.com",
           "client_type": 1,

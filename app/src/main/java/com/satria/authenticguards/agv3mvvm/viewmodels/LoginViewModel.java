@@ -1,5 +1,7 @@
 package com.satria.authenticguards.agv3mvvm.viewmodels;
 
+import android.view.View;
+
 import com.satria.authenticguards.agv3mvvm.model.LoginUser;
 
 import androidx.lifecycle.MutableLiveData;
@@ -19,5 +21,9 @@ public class LoginViewModel extends ViewModel {
         return loginUserMutableLiveData;
     }
 
-    
+    public void onClick(View view){
+        LoginUser loginUser=new LoginUser(EmailAddress.getValue(),Password.getValue());
+        loginUserMutableLiveData.setValue(loginUser);
+    }
+
 }

@@ -32,4 +32,5 @@ public class LoginUser {
         return Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches();
     }
 
+
 }
