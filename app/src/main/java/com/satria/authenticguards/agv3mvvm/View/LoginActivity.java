@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.MainActivity;
+import com.satria.authenticguards.agv3mvvm.Screens.MasterActivity;
 import com.satria.authenticguards.agv3mvvm.model.LoginUser;
 import com.satria.authenticguards.agv3mvvm.viewmodels.LoginViewModel;
 import com.satria.authenticguards.databinding.ActivityLoginBinding;
@@ -71,6 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                        public void onComplete(@NonNull Task<AuthResult> task) {
                             progressDialog.dismiss();
                            if (task.isSuccessful()){
+                               Intent intent =new Intent(LoginActivity.this,MasterActivity.class);
+                               startActivity(intent);
+                               finish();
                                Toast.makeText(LoginActivity.this, "Login successfuly!", Toast.LENGTH_SHORT).show();
                            }else{
                                Toast.makeText(LoginActivity.this, "Failed", Toast.LENGTH_SHORT).show();
@@ -81,29 +85,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    private void loginAccount(){
-        final FirebaseUser currentUser = mFirebaseAuth.getCurrentUser();
-        final DatabaseReference dbUser = FirebaseDatabase.getInstance().getReference("user");
-        assert currentUser != null;
-        if(!currentUser.isEmailVerified()){
-            currentUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Register Complete", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    //intent.putExtra("titleSlider",LoginUser.getName());
-                    startActivity(intent);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(LoginActivity.this, "Error : " + e.toString(), Toast.LENGTH_SHORT).show();
-                }
 
-            });
-        }
-    }
     private void progressDialog(){
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Login Account");

@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".agv3mvvm.MainActivity" />
         <activity android:name=".agv3mvvm.View.RegisterActivity" />
-        <activity android:name=".agv3mvvm.View.LoginActivity"></activity>
+        <activity android:name=".agv3mvvm.View.LoginActivity" />
+        <activity android:name=".agv3mvvm.Screens.MasterActivity"></activity>
     </application>
 
 </manifest>
