@@ -2,6 +2,7 @@ package com.satria.authenticguards.agv3mvvm;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -14,13 +15,17 @@ import com.satria.authenticguards.agv3mvvm.dataBinding.LoginHandler;
 
 
 public class MainActivity extends AppCompatActivity {
-
+    private Button btnRegister,btnLogin,btnGmail,btnEmail;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
        setContentView(R.layout.activity_main);
+       btnRegister=findViewById(R.id.btnRegister);
+       btnLogin=findViewById(R.id.btnLogin);
+       //btnGmail=findViewById(R.id.login_gmail);
+       //btnEmail=findViewById(R.id.login_email);
 
 
 

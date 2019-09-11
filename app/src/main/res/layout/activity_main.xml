@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:sothree="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="bottom"
+    android:gravity="bottom"
     sothree:umanoDragView="@id/dragView"
     sothree:umanoPanelHeight="0dp"
     sothree:umanoParallaxOffset="100dp"
@@ -73,7 +73,7 @@
                     android:orientation="vertical">-->
 
                     <Button
-                        android:id="@+id/register"
+                        android:id="@+id/btnRegister"
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
@@ -87,14 +87,14 @@
                         android:id="@+id/btnLogin"
                         android:layout_width="260dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/register"
+                        android:layout_below="@+id/btnRegister"
                         android:layout_centerHorizontal="true"
                         android:background="@drawable/button_login_email"
                         android:text="LOGIN"
                         android:textColor="#FFF" />
 
                     <CheckBox
-                        android:id="@+id/check"
+                        android:id="@+id/check_box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/btnLogin"
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/btnLogin"
                         android:layout_marginTop="15dp"
-                        android:layout_toRightOf="@+id/check"
+                        android:layout_toRightOf="@+id/check_box"
                         android:orientation="horizontal">
 
                         <TextView
@@ -171,7 +171,7 @@
             android:text="Select login method"/>
 
         <LinearLayout
-            android:id="@+id/login_email"
+            android:id="@+id/login_gmail"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_below="@+id/select_login_method"
@@ -191,10 +191,10 @@
 
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/login_hp"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_below="@+id/login_email"
+            android:layout_below="@+id/login_gmail"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
