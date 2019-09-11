@@ -28,7 +28,6 @@ import com.satria.authenticguards.agv3mvvm.Screens.MasterActivity;
 import com.satria.authenticguards.agv3mvvm.model.LoginUser;
 import com.satria.authenticguards.agv3mvvm.viewmodels.LoginViewModel;
 import com.satria.authenticguards.databinding.ActivityLoginBinding;
-import com.satria.authenticguards.databinding.ActivityMainBinding;
 import com.satria.authenticguards.databinding.ActivityRegisterBinding;
 
 import java.util.Objects;

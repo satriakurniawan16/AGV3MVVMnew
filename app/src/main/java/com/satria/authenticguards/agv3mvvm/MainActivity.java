@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.Screens.MasterActivity;
 import com.satria.authenticguards.agv3mvvm.dataBinding.LoginHandler;
-import com.satria.authenticguards.databinding.ActivityMainBinding;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,11 +20,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        LoginHandler handler = new LoginHandler();
-        binding.setHandlers(handler);
-
-        mAuth=FirebaseAuth.getInstance();
+       setContentView(R.layout.activity_main);
 
 
 
