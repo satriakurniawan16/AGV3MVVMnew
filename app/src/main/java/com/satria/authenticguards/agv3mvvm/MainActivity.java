@@ -1,20 +1,15 @@
 package com.satria.authenticguards.agv3mvvm;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -28,7 +23,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,11 +33,15 @@ import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.Screens.MasterActivity;
 import com.satria.authenticguards.agv3mvvm.View.LoginActivity;
 import com.satria.authenticguards.agv3mvvm.View.RegisterActivity;
-import com.satria.authenticguards.agv3mvvm.dataBinding.LoginHandler;
 import com.satria.authenticguards.agv3mvvm.model.User;
+import com.satria.authenticguards.agv3mvvm.utils.PrivaciEndService;
+import com.satria.authenticguards.agv3mvvm.utils.TermEndService;
 import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.HashMap;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -72,18 +70,21 @@ public class MainActivity extends AppCompatActivity {
         privacy=findViewById(R.id.privacy);
         slidingUpPanelLayout=findViewById(R.id.slidingup_main);
         mAuth=FirebaseAuth.getInstance();
+        btnRegister.setEnabled(false);
+        btnLogin.setEnabled(false);
+        btnRegister.setAlpha((float) 0.3);
+        btnLogin.setAlpha((float)0.3);
 
         //Google sign option
         GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).
                 requestIdToken(getString(R.string.default_web_client_id)).
                 requestEmail().build();
-        mGoogleapi=new GoogleApiClient.Builder(MainActivity.this).
-                enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-                    @Override
-                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-                        Toast.makeText(MainActivity.this, "Failed During login with Gmail", Toast.LENGTH_SHORT).show();
-                    }
-                }).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
+        mGoogleapi=new GoogleApiClient.Builder(MainActivity.this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+            @Override
+            public void onConnectionFailed(@NonNull com.google.android.gms.common.ConnectionResult connectionResult) {
+
+            }
+        }).addApi(Auth.GOOGLE_SIGN_IN_API,gso).build();
 
         //Config View
         slidingUpPanelLayout.addPanelSlideListener(new SlidingUpPanelLayout.PanelSlideListener() {
@@ -124,8 +125,41 @@ public class MainActivity extends AppCompatActivity {
                 signWithGoogle();
             }
         });
+        tos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), TermEndService.class);
+                intent.putExtra("EXTRA_SESSION_ID", "https://www.authenticguards.com/term/");
+                startActivity(intent);
+            }
+        });
+        tos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), PrivaciEndService.class);
+                intent.putExtra("EXTRA_SESSION_ID", "https://www.authenticguards.com/privacy-policy/");
+                startActivity(intent);
+            }
+        });
 
 
+    }
+    public void syaratKlik(View view){
+        boolean check=((CheckBox)view).isChecked();
+        switch (view.getId()){
+            case R.id.check_box:
+                if (check){
+                    btnRegister.setEnabled(true);
+                    btnLogin.setEnabled(true);
+                    btnRegister.setAlpha(1);
+                    btnLogin.setAlpha(1);
+                }else{
+                    btnRegister.setEnabled(false);
+                    btnLogin.setEnabled(false);
+                    btnRegister.setAlpha((float) 0.3);
+                    btnLogin.setAlpha((float)0.3);
+                }
+        }
     }
 
 
@@ -146,9 +180,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==RC_SIGN){
+        if (requestCode==RC_SIGN){
             GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()){
                 GoogleSignInAccount account=result.getSignInAccount();
@@ -166,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+                    Log.d("lOGIN GMAIL", "onComplete: success");
                     final FirebaseUser currentUser=mAuth.getCurrentUser();
                     final HashMap<String ,Object> hashUser=new HashMap<>();
                     gambar=currentUser.getPhotoUrl().toString();

@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -47,22 +48,27 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setupView();
         generateView();
-
+        mFirebaseAuth=FirebaseAuth.getInstance();
     }
 
     private void generateView() {
+
         registerViewModel.getUser().observe(this, new Observer<User>() {
             @Override
-            public void onChanged(@Nullable User user) {
+            public void onChanged(User user) {
+                Log.e("Register",user.getEmail());
+                String email=user.getEmail();
+                String pass=user.getStrPassword();
+
                 if(TextUtils.isEmpty(Objects.requireNonNull(user).getName())) {
                     registerBinding.edttxtFullname.setError("Enter Fullname !");
                     registerBinding.edttxtFullname.requestFocus();
                 }else if (TextUtils.isEmpty(Objects.requireNonNull(user).getEmail())){
                     registerBinding.edttxtEmailaddress.setError("Enter Email ! ");
                     registerBinding.edttxtEmailaddress.requestFocus();
-                }else if (TextUtils.isEmpty(Objects.requireNonNull(user).getNumberPhone())){
-                    registerBinding.edttxtPhonenumber.setError("Enter Phone Number ! ");
-                    registerBinding.edttxtPhonenumber.requestFocus();
+                }else if (TextUtils.isEmpty(Objects.requireNonNull(user.getNumberPhone()))){
+                    registerBinding.edttxtPhonenumberRegister.setError("Enter Phone Number ! ");
+                    registerBinding.edttxtPhonenumberRegister.requestFocus();
                 }else if (TextUtils.isEmpty(Objects.requireNonNull(user).getStrPassword())){
                     registerBinding.edttxtPassword.setError("Enter Password ! ");
                     registerBinding.edttxtPassword.requestFocus();
@@ -118,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onSuccess(Void aVoid) {
                     progressDialog.dismiss();
                     Toast.makeText(RegisterActivity.this, "Register Complete", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     intent.putExtra("titleSlider",user.getName());
                     startActivity(intent);
                 }

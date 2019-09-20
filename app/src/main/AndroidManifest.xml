@@ -21,7 +21,9 @@
         <activity android:name=".agv3mvvm.MainActivity" />
         <activity android:name=".agv3mvvm.View.RegisterActivity" />
         <activity android:name=".agv3mvvm.View.LoginActivity" />
-        <activity android:name=".agv3mvvm.Screens.MasterActivity"></activity>
+        <activity android:name=".agv3mvvm.Screens.MasterActivity" />
+        <activity android:name=".agv3mvvm.utils.TermEndService" />
+        <activity android:name=".agv3mvvm.utils.PrivaciEndService"></activity>
     </application>
 
 </manifest>
