@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AGV3MVVM</string>
     <string name="string_subtitle_login">please fill all blank form to create account !</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
