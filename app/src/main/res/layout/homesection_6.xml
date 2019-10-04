@@ -3,23 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        >
+        android:layout_alignParentTop="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/image_highlight"
-            app:riv_mutate_background="true"/>
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/image_locator"
+                android:scaleType="centerCrop"
+                app:riv_mutate_background="true"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,19 +34,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
-                    android:text="THE BEST DEALING EVER"
+                    android:text="Authentic Store"
                     android:textColor="@color/colorSecondary"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineSpacingMultiplier="1"
-                    android:text="Dapatkan promo diskon up to 40% dan dapatkan kesempatan memenangkan Iphone X MAX"
-                    android:textSize="12sp"
-                    android:typeface="sans" />
+                    android:typeface="sans"
+                    android:text="Temukan product original dari brand kesayangan anda dan dapatkan informasi Authentic Store terdekat"
+                    android:textSize="12sp" />
+
                 <Button
-                    android:id="@+id/more_info_highlight"
+                    android:id="@+id/more_info_authentic_store"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_gravity="end"
@@ -54,10 +56,8 @@
                     android:text="MORE INFO"
                     android:textColor="@color/colorWhite"
                     android:textSize="10sp" />
+
             </LinearLayout>
-
         </LinearLayout>
-
     </RelativeLayout>
-
 </RelativeLayout>
