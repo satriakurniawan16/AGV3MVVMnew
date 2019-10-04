@@ -31,6 +31,7 @@ public class User {
         this.strPassword = strPassword;
         this.strConfirmPassword = strConfirmPassword;
     }
+    public User(){}
 
     public String getNumberPhone() {
         return numberPhone;
