@@ -12,6 +12,7 @@
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
+
         <activity
             android:name=".agv3mvvm.View.SplashActivity"
             android:theme="@style/Splashtheme">
@@ -26,7 +27,8 @@
         <activity android:name=".agv3mvvm.View.LoginActivity" />
         <activity android:name=".agv3mvvm.Screens.MasterActivity" />
         <activity android:name=".agv3mvvm.utils.TermEndService" />
-        <activity android:name=".agv3mvvm.utils.PrivaciEndService"></activity>
+        <activity android:name=".agv3mvvm.utils.PrivaciEndService" />
+        <activity android:name=".agv3mvvm.View.DetailNotifActivity"></activity>
     </application>
 
 </manifest>
