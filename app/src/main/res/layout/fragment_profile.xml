@@ -1,14 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".agv3mvvm.fragment.ProfileFragment">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".agv3mvvm.fragment.ProfileFragment"
+    android:background="@color/colorWhite">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite">
+
+            <RelativeLayout
+                android:id="@+id/box_account1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="4dp"
+                android:padding="16dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_imageprofile"
+                    android:layout_width="85dp"
+                    android:layout_height="85dp"
+                    android:src="@drawable/ic_user"
+                    android:layout_centerVertical="true"/>
+
+                <TextView
+                    android:id="@+id/textEditProfile"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGold"
+                    android:text="EDIT"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:typeface="normal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/textFname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGREY"
+                    android:text="NAME"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:typeface="normal"
+                    android:layout_toRightOf="@+id/profile_imageprofile"
+                    android:layout_marginBottom="5dp" />
+
+                <TextView
+                    android:id="@+id/textFEmail"
+                    android:layout_below="@+id/textFname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGREY"
+                    android:text="EMAIL"
+                    android:textSize="14sp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/profile_imageprofile"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/textFPhone"
+                    android:layout_below="@+id/textFEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:textColor="@color/colorGREY"
+                    android:text="PHONE"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/profile_imageprofile"
+                    android:textSize="14sp"
+                    android:textStyle="normal"
+                    android:typeface="normal" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_account2"
+                android:layout_below="@id/box_account1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="8dp"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Connected as:"
+                        android:paddingBottom="16dp"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/fb_loginbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"/>
+                </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/box_account3"
+                android:layout_below="@id/box_account2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="8dp"
+                android:padding="10dp">
+
+                <RelativeLayout
+                    android:background="@color/colorWhite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/pagemenu1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:background="@color/colorWhite">
+
+                        <ImageView
+                            android:id="@+id/iconLanguange"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:clickable="true"
+                            android:src="@drawable/a_languange" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/iconLanguange"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/colorGREY"
+                            android:text="Change Language"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+                        <View
+                            android:layout_below="@+id/iconLanguange"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="@color/colorGREY" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/pmenu2"
+                        android:layout_below="@id/pagemenu1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/iconTerm"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:clickable="true"
+                            android:src="@drawable/a_info" />
+                        <TextView
+                            android:layout_toRightOf="@+id/iconTerm"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/colorGREY"
+                            android:text="Term of Services"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                        <View
+                            android:layout_below="@+id/iconTerm"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="@color/colorGREY" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/pmenu3"
+                        android:layout_below="@+id/pmenu2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/iconPrivacy"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:clickable="true"
+                            android:src="@drawable/a_privacy" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/iconPrivacy"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/colorGREY"
+                            android:text="Privacy Policy"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                        <View
+                            android:layout_below="@+id/iconPrivacy"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="@color/colorGREY" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/pmenu4"
+                        android:layout_below="@+id/pmenu3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/iconStars"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:clickable="true"
+                            android:src="@drawable/a_stars" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/iconStars"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/colorGREY"
+                            android:text="Rate Authentic Guards App"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                        <View
+                            android:layout_below="@+id/iconStars"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="@color/colorGREY" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/pmenu5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorWhite"
+                        android:layout_marginTop="8dp"
+                        android:layout_below="@+id/pmenu4"
+                        android:padding="10dp">
+
+                        <ImageView
+                            android:id="@+id/iconHelp"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:clickable="true"
+                            android:src="@drawable/a_help" />
+
+                        <TextView
+                            android:layout_toRightOf="@+id/iconHelp"
+                            android:layout_alignParentRight="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="24dp"
+                            android:layout_marginTop="6dp"
+                            android:textColor="@color/colorGREY"
+                            android:text="Customer Support"
+                            android:textSize="14sp"
+                            android:textStyle="normal"
+                            android:typeface="normal" />
+
+                        <View
+                            android:layout_below="@+id/iconHelp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="1px"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="40dp"
+                            android:background="@color/colorGREY" />
+
+                    </RelativeLayout>
+
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+            <Button
+                android:id="@+id/logoutBtn"
+                android:layout_below="@+id/box_account3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LOG OUT"
+                android:background="@color/colorWhite"
+                android:textColor="@color/colorRed"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

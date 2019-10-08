@@ -56,6 +56,7 @@ dependencies {
     implementation 'com.synnapps:carouselview:0.1.5'
     implementation 'com.codesgood:justifiedtextview:1.1.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 
     //firebase library
     implementation 'com.google.firebase:firebase-core:17.2.0'
@@ -78,7 +79,12 @@ dependencies {
 
     //facebook
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
+    implementation 'com.facebook.android:facebook-login:[4,5)'
+    implementation 'com.facebook.android:facebook-android-sdk:4.39.0'
 
+    //picture
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
