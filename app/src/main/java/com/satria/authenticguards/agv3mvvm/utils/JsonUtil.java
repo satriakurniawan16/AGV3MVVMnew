@@ -56,4 +56,13 @@ public class JsonUtil {
         });
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
+
+//    private void getDataSliderHome(List<String > imageUrls){
+//        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "https://admin.authenticguards.com/api/slider_?&appid=003&loclang=a&loclong=a", null, new Response.Listener<JSONObject>() {
+//            @Override
+//            public void onResponse(JSONObject response) {
+//
+//            }
+//        })
+//    }
 }
