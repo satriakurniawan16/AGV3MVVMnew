@@ -98,9 +98,10 @@ public class HomeFragment extends Fragment {
     ViewListener viewListener=new ViewListener() {
         @Override
         public View setViewForPosition(int position) {
+            imageUrls=jsonUtil.imgUrls;
             View customView=getActivity().getLayoutInflater().inflate(R.layout.home_viewcustom,null);
             ImageView imageView=customView.findViewById(R.id.myImage_home);
-            Picasso.get().load(jsonUtil.imgUrls.get(position)).into(imageView);
+            Picasso.get().load(imageUrls.get(position)).into(imageView);
             return customView;
         }
     };
@@ -144,6 +145,8 @@ public class HomeFragment extends Fragment {
         super.onResume();
         mShimmerViewContainer.startShimmerAnimation();
         jsonUtil.getBrandHome(getContext(),mAdapterBrand,mProgressBarBrand);
+        jsonUtil.getPromoHome(getContext(),token,mAdapterPromo,mProgressBarPromo);
+        jsonUtil.getDataSliderHome(getContext(),viewListener,carouselView,mShimmerViewContainer);
 
     }
 
@@ -156,14 +159,14 @@ public class HomeFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<GetTokenResult> task) {
                             token = task.getResult().getToken();
-                            Log.d("lol", "onCompleteBaru: " + token);
+                            Log.d("homefragment", "onCompleteBaru: " + token);
                             String result = "";
                             DataRequest.setUser(getApplicationContext(), token);
                         }
                     });
             completeProfileLayout();
         }
-        jsonUtil.getDataSliderHome(getContext(),viewListener,carouselView,mShimmerViewContainer);
+
         goAllBrand();
         goAllpromo();
         goAutenticStore();
@@ -203,7 +206,7 @@ public class HomeFragment extends Fragment {
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 int firstItemVisible = linearLayoutManager.findFirstVisibleItemPosition();
-                if (firstItemVisible != 0 && firstItemVisible % mDataPromo.size() == 0) {
+                if (firstItemVisible != 0 && firstItemVisible % jsonUtil.promos.size() == 0) {
                     recyclerView.getLayoutManager().scrollToPosition(0);
                 }
             }
@@ -304,7 +307,7 @@ public class HomeFragment extends Fragment {
        }
 
        private void adapterPromo(){
-        mAdapterPromo=new PromoAdapter(getApplicationContext(),mDataPromo,mDataId);
+        mAdapterPromo=new PromoAdapter(getApplicationContext(),jsonUtil.promos,mDataId);
         recylerPromo.setAdapter(mAdapterPromo);
        }
 

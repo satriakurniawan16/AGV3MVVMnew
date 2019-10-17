@@ -15,8 +15,10 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonArray;
 import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.Adapter.BrandAdapter;
+import com.satria.authenticguards.agv3mvvm.Adapter.PromoAdapter;
 import com.satria.authenticguards.agv3mvvm.model.Brand;
 import com.satria.authenticguards.agv3mvvm.model.Notif;
+import com.satria.authenticguards.agv3mvvm.model.Promo;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ViewListener;
@@ -34,6 +36,7 @@ public class JsonUtil {
     Context context;
     public List<String> imgUrls= new ArrayList<>();
     public ArrayList<Brand> brands=new ArrayList<>();
+    public ArrayList<Promo> promos=new ArrayList<>();
     public JsonUtil(){}
 
     public void getDataNotif(Context context, RecyclerView.Adapter adapter, List<Notif> notifList){
@@ -87,7 +90,7 @@ public class JsonUtil {
                         imgUrls.add(finalImage);
                     }
                     carouselView.setViewListener(view);
-                    carouselView.setPageCount(imgUrls.size());
+                    carouselView.setPageCount(3);
                     shimmerFrameLayout.stopShimmerAnimation();
 
                     Log.d("getdataimageurls", "onResponse: "+imgUrls);
@@ -128,6 +131,45 @@ public class JsonUtil {
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+    public void getPromoHome(Context context, String token, PromoAdapter promoAdapter,ProgressBar progressBar){
+        String url = "https://admin.authenticguards.com/api/promo_?token=" + token + "&appid=003";
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try{
+                    JSONObject json = response.getJSONObject("result");
+                    JSONArray jsonArray = json.getJSONArray("data");
+                    for (int i = 0; i <jsonArray.length() ; i++) {
+                        JSONObject data=jsonArray.getJSONObject(i);
+                        int id=data.getInt("id");
+                        String idx = String.valueOf(id);
+                        String image = data.getString("image");
+                        final String title = data.getString("title");
+                        final String price = data.getString("price");
+                        final String time = data.getString("time");
+                        final String desc = data.getString("description");
+                        final String termC = data.getString("termCondition");
+                        final String tanggal = time.substring(0, 10);
+                        final String harga = price.substring(6, 9);
+                        String finalImage="https://admin.authenticguards.com/storage/" + image + ".jpg";
+                        promos.add(new Promo(idx,finalImage,title,harga,"5",tanggal,desc,termC));
+
+                    }
+                    promoAdapter.notifyDataSetChanged();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }catch (JSONException e){
+                    e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
