@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.satria.authenticguards.R;
+
 public class DetailPointActivity extends AppCompatActivity {
 
     @Override

@@ -40,6 +40,7 @@ import com.satria.authenticguards.agv3mvvm.View.DetailNotifActivity;
 import com.satria.authenticguards.agv3mvvm.model.Brand;
 import com.satria.authenticguards.agv3mvvm.model.Promo;
 import com.satria.authenticguards.agv3mvvm.utils.DataRequest;
+import com.satria.authenticguards.agv3mvvm.utils.JsonUtil;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ViewListener;
@@ -76,7 +77,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerViewBrand, recylerPromo;
     private ArrayList<String> mDataId,
             mDataIdPromo;
-
+    JsonUtil jsonUtil=new JsonUtil();
 
     private ArrayList<Brand> mData = new ArrayList<>();
     private ArrayList<Promo> mDataPromo = new ArrayList<>();
@@ -99,7 +100,7 @@ public class HomeFragment extends Fragment {
         public View setViewForPosition(int position) {
             View customView=getActivity().getLayoutInflater().inflate(R.layout.home_viewcustom,null);
             ImageView imageView=customView.findViewById(R.id.myImage_home);
-            Picasso.get().load(imageUrls.get(position)).into(imageView);
+            Picasso.get().load(jsonUtil.imgUrls.get(position)).into(imageView);
             return customView;
         }
     };
@@ -139,7 +140,9 @@ public class HomeFragment extends Fragment {
     }
 
     private void generateView(View rootView) {
+
         if(firebaseUser != null ) {
+
             firebaseUser.getIdToken(true)
                     .addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
                         @Override
@@ -152,6 +155,7 @@ public class HomeFragment extends Fragment {
                     });
             completeProfileLayout();
         }
+        jsonUtil.getDataSliderHome(getContext(),viewListener,carouselView,mShimmerViewContainer);
         goAllBrand();
         goAllpromo();
         goAutenticStore();
