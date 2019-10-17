@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -13,6 +14,8 @@ import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonArray;
 import com.satria.authenticguards.R;
+import com.satria.authenticguards.agv3mvvm.Adapter.BrandAdapter;
+import com.satria.authenticguards.agv3mvvm.model.Brand;
 import com.satria.authenticguards.agv3mvvm.model.Notif;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
@@ -30,7 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class JsonUtil {
     Context context;
     public List<String> imgUrls= new ArrayList<>();
-
+    public ArrayList<Brand> brands=new ArrayList<>();
     public JsonUtil(){}
 
     public void getDataNotif(Context context, RecyclerView.Adapter adapter, List<Notif> notifList){
@@ -90,6 +93,41 @@ public class JsonUtil {
                     Log.d("getdataimageurls", "onResponse: "+imgUrls);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+    public void getBrandHome(Context context, BrandAdapter adapter, ProgressBar progressBar){
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "https://admin.authenticguards.com/api/feature?appid=003", null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response.length()>0){
+                    try{
+                        JSONObject jsonObject=response.getJSONObject("result");
+                        JSONArray jsonArray=jsonObject.getJSONArray("data");
+                        for (int i = 0; i <5 ; i++) {
+                            JSONObject data=jsonArray.getJSONObject(i);
+                            int id=data.getInt("id");
+                            String idString = String.valueOf(id);
+                            String image = data.getString("image");
+                            String name = data.getString("Name");
+                            JSONObject brand = data.getJSONObject("client");
+                            brands.add(new Brand(idString,name,"https://admin.authenticguards.com/storage/" + image + ".jpg"));
+
+                        }
+                        adapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
+
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
                 }
             }
         }, new Response.ErrorListener() {

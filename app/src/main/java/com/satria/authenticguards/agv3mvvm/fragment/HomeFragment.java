@@ -139,6 +139,14 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mShimmerViewContainer.startShimmerAnimation();
+        jsonUtil.getBrandHome(getContext(),mAdapterBrand,mProgressBarBrand);
+
+    }
+
     private void generateView(View rootView) {
 
         if(firebaseUser != null ) {
@@ -283,14 +291,14 @@ public class HomeFragment extends Fragment {
                         mActionMode.invalidate();
                     return;
                 }
-                Brand brand = mData.get(position);
+                Brand brand = jsonUtil.brands.get(position);
                 Intent intent = new Intent(getApplicationContext(), DetailNotifActivity.class);
                 intent.putExtra("id", brand.getId());
                 intent.putExtra("name", brand.getName());
                 intent.putExtra("image", brand.getImage());
                 startActivity(intent);
             }
-        },getApplicationContext(),mData,mDataId );
+        },getApplicationContext(),jsonUtil.brands,mDataId );
 
         recyclerViewBrand.setAdapter(mAdapterBrand);
        }
