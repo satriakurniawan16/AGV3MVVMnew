@@ -39,7 +39,8 @@
         <activity android:name=".agv3mvvm.utils.TermEndService" />
         <activity android:name=".agv3mvvm.utils.PrivaciEndService" />
         <activity android:name=".agv3mvvm.View.DetailNotifActivity" />
-        <activity android:name=".agv3mvvm.View.DetailPointActivity"></activity>
+        <activity android:name=".agv3mvvm.View.DetailPointActivity" />
+        <activity android:name=".agv3mvvm.View.MyProductDetail"></activity>
     </application>
 
 </manifest>

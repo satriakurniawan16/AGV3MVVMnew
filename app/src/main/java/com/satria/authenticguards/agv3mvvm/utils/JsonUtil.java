@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -13,11 +14,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.Adapter.BrandAdapter;
+import com.satria.authenticguards.agv3mvvm.Adapter.MyProductAdapter;
 import com.satria.authenticguards.agv3mvvm.Adapter.PromoAdapter;
 import com.satria.authenticguards.agv3mvvm.model.Brand;
 import com.satria.authenticguards.agv3mvvm.model.Notif;
+import com.satria.authenticguards.agv3mvvm.model.ProductModel;
 import com.satria.authenticguards.agv3mvvm.model.Promo;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
@@ -39,6 +43,7 @@ public class JsonUtil {
     public ArrayList<Promo> promos=new ArrayList<>();
     public JsonUtil(){}
 
+    //for json in notification fragments
     public void getDataNotif(Context context, RecyclerView.Adapter adapter, List<Notif> notifList){
         JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, "https://admin.authenticguards.com/api/notification/?appid=003", null, new Response.Listener<JSONObject>() {
             @Override
@@ -73,7 +78,7 @@ public class JsonUtil {
         });
         Volley.newRequestQueue(context).add(jsonObjectRequest);
     }
-
+    //for json in homefragment until
     public void getDataSliderHome(Context context, ViewListener view, CarouselView carouselView, ShimmerFrameLayout shimmerFrameLayout){
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, "https://admin.authenticguards.com/api/slider_?&appid=003&loclang=a&loclong=a", null, new Response.Listener<JSONObject>() {
             @Override
@@ -175,6 +180,58 @@ public class JsonUtil {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+    //here bro
+
+    //for json in myproduct fragments
+    public void getDataProduct(Context context, String token, ArrayList<ProductModel> productModels, LinearLayout emptyView, MyProductAdapter adapter){
+        String url = "https://admin.authenticguards.com/api/myproduct_?token=" + token + "&appid=003";
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                if (response.length()>0){
+                    try{
+                        JSONObject jsonObject=response.getJSONObject("result");
+                        JSONArray results=(JSONArray)jsonObject.get("data");
+                        for (int i = 0; i <results.length() ; i++) {
+                            JSONObject data=results.getJSONObject(i);
+                            String tanggal=data.getString("created_at");
+                            String date_claim_product=tanggal.substring(0,10);
+                            String status=data.getString("statusClaim");
+                            JSONObject produk=(JSONObject)data.get("product");
+                            String name_product=produk.getString("nama");
+                            String size=produk.getString("size");
+                            String color=produk.getString("color");
+                            String material=produk.getString("material");
+                            String price=produk.getString("price");
+                            String distributor=produk.getString("distributedOn");
+                            String expiredDate = produk.getString("expireDate");
+                            String image_product = produk.getString("image");
+                            String finalImageProduct="https://admin.authenticguards.com/product/" + image_product + ".jpg";
+
+                            JSONObject brand = (JSONObject) produk.get("brand");
+                            String name_brand = brand.getString("Name");
+                            String alamat = brand.getString("addressOfficeOrStore");
+                            String imageBrand = brand.getString("image");
+                            String finalImageBrand="https://admin.authenticguards.com/storage/app/public/" + imageBrand + ".jpg";
+                            productModels.add(new ProductModel(finalImageProduct, name_product, name_brand, date_claim_product, status, size, color, material, price, distributor, expiredDate, alamat, finalImageBrand));
+                        }
+                        if (productModels.size()==0) emptyView.setVisibility(View.VISIBLE);
+                        else emptyView.setVisibility(View.GONE);
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
 
             }
         });
