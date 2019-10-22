@@ -57,6 +57,12 @@ dependencies {
     implementation 'com.codesgood:justifiedtextview:1.1.0'
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+
+    //maps
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
 
     //firebase library
     implementation 'com.google.firebase:firebase-core:17.2.0'

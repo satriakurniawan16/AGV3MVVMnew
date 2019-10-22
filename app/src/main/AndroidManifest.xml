@@ -40,7 +40,10 @@
         <activity android:name=".agv3mvvm.utils.PrivaciEndService" />
         <activity android:name=".agv3mvvm.View.DetailNotifActivity" />
         <activity android:name=".agv3mvvm.View.DetailPointActivity" />
-        <activity android:name=".agv3mvvm.View.MyProductDetail"></activity>
+        <activity android:name=".agv3mvvm.View.MyProductDetail" />
+        <activity android:name=".agv3mvvm.View.QrCodeActivity" />
+        <activity android:name=".agv3mvvm.View.VerifiedProductActivity" />
+        <activity android:name=".agv3mvvm.View.UnverifiedProductActivity"></activity>
     </application>
 
 </manifest>

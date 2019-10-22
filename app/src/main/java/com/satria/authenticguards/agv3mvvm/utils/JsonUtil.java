@@ -1,11 +1,14 @@
 package com.satria.authenticguards.agv3mvvm.utils;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -19,6 +22,8 @@ import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.Adapter.BrandAdapter;
 import com.satria.authenticguards.agv3mvvm.Adapter.MyProductAdapter;
 import com.satria.authenticguards.agv3mvvm.Adapter.PromoAdapter;
+import com.satria.authenticguards.agv3mvvm.View.UnverifiedProductActivity;
+import com.satria.authenticguards.agv3mvvm.View.VerifiedProductActivity;
 import com.satria.authenticguards.agv3mvvm.model.Brand;
 import com.satria.authenticguards.agv3mvvm.model.Notif;
 import com.satria.authenticguards.agv3mvvm.model.ProductModel;
@@ -34,6 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class JsonUtil {
@@ -233,6 +239,101 @@ public class JsonUtil {
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
 
+            }
+        });
+        Volley.newRequestQueue(context).add(jsonObjectRequest);
+    }
+
+    //for json in QRcodeActivity
+    public void validation_codeQR(Context context, String scanCode, String token, double latitude, double  longitude, ProgressDialog progressDialog){
+
+        String url="https://admin.authenticguards.com/api/check_/"+scanCode+"?token="+token+"&appid=003&loclang="+latitude+"&loclong="+longitude;
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                String rvalid="";
+                String size="",color="",price="",material="",distributor="",expiredDate="",img="",GCODE="";
+                String brand = "",company="",address="",phone="",email="",web="";
+                if (response.length()>0){
+                    for (int i = 0; i <response.length() ; i++) {
+                        try{
+                            rvalid = response.getString("status");
+                            JSONObject jsonObject=response.getJSONObject("result");
+                            if (!jsonObject.isNull("product")){
+                                JSONObject resultProduct= jsonObject.getJSONObject("product");
+                                size = resultProduct.getString("size");
+                                color = resultProduct.getString("color");
+                                price = resultProduct.getString("price");
+                                material = resultProduct.getString("material");
+                                distributor = resultProduct.getString("distributedOn");
+                                expiredDate = resultProduct.getString("expireDate");
+                                img = resultProduct.getString("image");
+                                GCODE = jsonObject.getString("code");
+
+                                JSONObject dataclient = jsonObject.getJSONObject("client");
+                                JSONObject data = jsonObject.getJSONObject("brand");
+                                brand = data.getString("Name");
+                                company = dataclient.getString("name");
+                                address = data.getString("addressOfficeOrStore");
+                                phone = data.getString("csPhone");
+                                email = data.getString("csEmail");
+                                web = data.getString("web");
+                            }else{
+                                JSONObject newresultObject = jsonObject.getJSONObject("package_code");
+                                JSONObject brandnew = jsonObject.getJSONObject("brand");
+                                JSONObject clientnew = jsonObject.getJSONObject("client");
+                                size = "unregistered";
+                                color = "unregistered";
+                                price = "unregistered";
+                                material = "unregistered";
+                                distributor = "unregistered";
+                                expiredDate = "unregistered";
+                                img = "unregistered";
+                                GCODE = jsonObject.getString("code");
+                                brand = brandnew.getString("Name");
+                                company = clientnew.getString("name");
+                                address = clientnew.getString("address");
+                                phone = clientnew.getString("phone");
+                                email = clientnew.getString("email");
+                                web = clientnew.getString("web");
+                            }
+                        }catch (JSONException e){
+
+                        }
+                    }
+                    if (rvalid.equals("success")){
+                        progressDialog.dismiss();
+                        Intent intent_geniune=new Intent(context,VerifiedProductActivity.class);
+                        intent_geniune.putExtra("key", scanCode);
+                        intent_geniune.putExtra("brand", brand);
+                        intent_geniune.putExtra("company", company);
+                        intent_geniune.putExtra("address", address);
+                        intent_geniune.putExtra("phone", phone);
+                        intent_geniune.putExtra("email", email);
+                        intent_geniune.putExtra("web", web);
+
+                        intent_geniune.putExtra("code", GCODE);
+
+                        intent_geniune.putExtra("size",size);
+                        intent_geniune.putExtra("color",color);
+                        intent_geniune.putExtra("material",material);
+                        intent_geniune.putExtra("price",price);
+                        intent_geniune.putExtra("distributor",distributor);
+                        intent_geniune.putExtra("expiredDate",expiredDate);
+                        intent_geniune.putExtra("image",img);
+                        context.startActivity(intent_geniune);
+                    }else {
+                        progressDialog.dismiss();
+                        context.startActivity(new Intent(context,UnverifiedProductActivity.class));
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, "Wrong Code, Check your connection", Toast.LENGTH_SHORT).show();
+                Intent intent_fake = new Intent(context, UnverifiedProductActivity.class);
+                context.startActivity(intent_fake);
             }
         });
         Volley.newRequestQueue(context).add(jsonObjectRequest);
