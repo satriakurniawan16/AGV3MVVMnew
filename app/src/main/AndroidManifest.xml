@@ -43,7 +43,9 @@
         <activity android:name=".agv3mvvm.View.MyProductDetail" />
         <activity android:name=".agv3mvvm.View.QrCodeActivity" />
         <activity android:name=".agv3mvvm.View.VerifiedProductActivity" />
-        <activity android:name=".agv3mvvm.View.UnverifiedProductActivity"></activity>
+        <activity android:name=".agv3mvvm.View.UnverifiedProductActivity" />
+        <activity android:name=".agv3mvvm.View.EditProfileActivity" />
+        <activity android:name=".agv3mvvm.View.VerifyPhoneActivity"></activity>
     </application>
 
 </manifest>

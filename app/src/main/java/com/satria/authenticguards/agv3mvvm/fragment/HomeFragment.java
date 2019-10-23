@@ -37,6 +37,7 @@ import com.satria.authenticguards.R;
 import com.satria.authenticguards.agv3mvvm.Adapter.BrandAdapter;
 import com.satria.authenticguards.agv3mvvm.Adapter.PromoAdapter;
 import com.satria.authenticguards.agv3mvvm.View.DetailNotifActivity;
+import com.satria.authenticguards.agv3mvvm.View.EditProfileActivity;
 import com.satria.authenticguards.agv3mvvm.model.Brand;
 import com.satria.authenticguards.agv3mvvm.model.Promo;
 import com.satria.authenticguards.agv3mvvm.utils.DataRequest;
@@ -229,7 +230,7 @@ public class HomeFragment extends Fragment {
         mButtonGoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),DetailNotifActivity.class));
+                startActivity(new Intent(getApplicationContext(),EditProfileActivity.class));
             }
         });
     }
